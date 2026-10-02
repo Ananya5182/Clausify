@@ -1,0 +1,13 @@
+from supabase import create_client, Client
+from app.core.config import settings
+
+
+def get_supabase_client() -> Client:
+    """Initialize and return a Supabase client instance using supabase-py."""
+    if not settings.SUPABASE_URL or not settings.SUPABASE_KEY:
+        raise ValueError("SUPABASE_URL and SUPABASE_KEY must be configured in environment variables.")
+    return create_client(settings.SUPABASE_URL, settings.SUPABASE_KEY)
+
+
+# Singleton client instance for import across the application
+supabase_client: Client = get_supabase_client()

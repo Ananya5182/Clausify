@@ -1,0 +1,11 @@
+fastapi
+uvicorn[standard]
+python-dotenv
+pydantic
+supabase
+groq
+sentence-transformers
+pypdf
+jinja2
+xhtml2pdf
+python-multipart

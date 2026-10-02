@@ -1,0 +1,45 @@
+# Virtual Environments
+venv/
+env/
+.venv/
+**/venv/
+**/env/
+
+# Dependencies & Package Managers
+node_modules/
+**/node_modules/
+package-lock.json
+
+# Environment Variables & Secrets (CRITICAL)
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+
+# Python cache & compiled files
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*$py.class
+*.pytest_cache/
+.pytest_cache/
+
+# Build artifacts & distributions
+dist/
+dist-ssr/
+build/
+*.egg-info/
+
+# Logs & temporary files
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+
+# IDE & OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

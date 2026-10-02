@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Formal Legal Notice - Dispute Resolution</title>
+    <style>
+        @page {
+            size: a4 portrait;
+            margin-top: 18mm;
+            margin-bottom: 18mm;
+            margin-left: 18mm;
+            margin-right: 18mm;
+            @bottom-right {
+                content: "Page " counter(page) " of " counter(pages);
+                font-family: Helvetica, Arial, sans-serif;
+                font-size: 8pt;
+                color: #718096;
+            }
+            @bottom-left {
+                content: "CONFIDENTIAL & PRIVILEGED LEGAL NOTICE";
+                font-family: Helvetica, Arial, sans-serif;
+                font-size: 8pt;
+                color: #a0aec0;
+            }
+        }
+
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+            color: #1a202c;
+            line-height: 1.45;
+            font-size: 10pt;
+        }
+
+        .header-table {
+            width: 100%;
+            margin-bottom: 16px;
+            border-bottom: 2px solid #1a365d;
+            padding-bottom: 10px;
+        }
+
+        .notice-badge {
+            font-size: 8pt;
+            font-weight: bold;
+            color: #c53030;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .notice-title {
+            font-size: 15pt;
+            font-weight: bold;
+            color: #1a365d;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .notice-subtitle {
+            font-size: 8.5pt;
+            color: #4a5568;
+            margin-top: 3px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .meta-table {
+            width: 100%;
+            margin-bottom: 14px;
+        }
+
+        .meta-col {
+            vertical-align: top;
+            width: 50%;
+        }
+
+        .address-box {
+            background-color: #f7fafc;
+            border: 1px solid #e2e8f0;
+            padding: 8px 10px;
+            border-radius: 3px;
+            font-size: 9pt;
+        }
+
+        .section-title {
+            font-size: 10.5pt;
+            font-weight: bold;
+            color: #2b6cb0;
+            border-bottom: 1px solid #cbd5e0;
+            padding-bottom: 3px;
+            margin-top: 12px;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+        }
+
+        .particulars-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            margin-top: 4px;
+        }
+
+        .particulars-table th, .particulars-table td {
+            border: 1px solid #e2e8f0;
+            padding: 5px 8px;
+            font-size: 9pt;
+        }
+
+        .particulars-table th {
+            background-color: #edf2f7;
+            text-align: left;
+            width: 32%;
+            font-weight: bold;
+            color: #2d3748;
+        }
+
+        .particulars-table td {
+            background-color: #ffffff;
+            color: #1a202c;
+        }
+
+        .text-paragraph {
+            margin-bottom: 8px;
+            text-align: justify;
+            font-size: 9.5pt;
+            line-height: 1.4;
+        }
+
+        .statute-box {
+            background-color: #fffff0;
+            border-left: 3px solid #d69e2e;
+            padding: 6px 10px;
+            margin: 6px 0;
+            font-size: 9pt;
+        }
+
+        .demand-box {
+            background-color: #fff5f5;
+            border: 1px solid #fed7d7;
+            border-left: 4px solid #e53e3e;
+            padding: 8px 10px;
+            margin-top: 8px;
+            margin-bottom: 10px;
+            font-size: 9pt;
+        }
+
+        .signature-table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        .signature-line {
+            border-top: 1px solid #4a5568;
+            margin-top: 35px;
+            width: 220px;
+        }
+
+        .statute-list {
+            margin: 4px 0 6px 16px;
+            padding: 0;
+            font-size: 9pt;
+        }
+
+        .statute-list li {
+            margin-bottom: 3px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <table class="header-table" cellpadding="0" cellspacing="0">
+        <tr>
+            <td style="width: 70%; vertical-align: middle;">
+                <div class="notice-badge">FORMAL DISPUTE NOTICE // WITHOUT PREJUDICE</div>
+                <div class="notice-title">LEGAL NOTICE & DEMAND FOR RECTIFICATION</div>
+                <div class="notice-subtitle">ISSUED UNDER CONSUMER PROTECTION LAWS & CONTRACT STATUTES</div>
+            </td>
+            <td style="width: 30%; text-align: right; vertical-align: middle;">
+                <div style="font-size: 8.5pt; color: #718096;">
+                    <strong>Date:</strong> {{ notice_date | default("Immediate") }}<br>
+                    <strong>Ref No:</strong> NOT-{{ transaction_id | default("GEN-REF") | upper }}
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <!-- Parties Identification -->
+    <table class="meta-table" cellpadding="0" cellspacing="0">
+        <tr>
+            <td class="meta-col" style="padding-right: 8px;">
+                <div class="address-box">
+                    <strong style="color: #2b6cb0;">FROM (COMPLAINANT / AGGRIEVED CONSUMER):</strong><br>
+                    <strong>{{ complainant_name }}</strong><br>
+                    <span>Aggrieved Consumer / Account Holder</span><br>
+                    {% if complainant_email %}<span>Email: {{ complainant_email }}</span><br>{% endif %}
+                    {% if complainant_address %}<span>Address: {{ complainant_address }}</span>{% endif %}
+                </div>
+            </td>
+            <td class="meta-col" style="padding-left: 8px;">
+                <div class="address-box">
+                    <strong style="color: #c53030;">TO (RESPONDENT / SERVICE PROVIDER):</strong><br>
+                    <strong>{{ company_name }}</strong><br>
+                    <span>Grievance Redressal Officer / Legal Department</span><br>
+                    <span>Corporate / Operational Headquarters</span><br>
+                    <span>Delivery via Electronic Dispatch & Recorded Notice</span>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <!-- Subject Heading -->
+    <div style="background-color: #ebf8ff; border: 1px solid #bee3f8; padding: 6px 10px; margin-bottom: 10px; font-size: 9.5pt;">
+        <strong>SUBJECT:</strong> FORMAL LEGAL NOTICE CALLING FORTH IMMEDIATE RECTIFICATION, FULL REFUND OF DISPUTED MONIES, AND CEASE OF UNFAIR CONSUMER PRACTICES REGARDING TRANSACTION <strong>{{ transaction_id }}</strong>.
+    </div>
+
+    <!-- Section 1: Transaction Particulars -->
+    <div class="section-title">1. Summary of Dispute Particulars</div>
+    <table class="particulars-table">
+        <tr>
+            <th>Complainant Name</th>
+            <td>{{ complainant_name }}</td>
+        </tr>
+        <tr>
+            <th>Respondent Entity</th>
+            <td>{{ company_name }}</td>
+        </tr>
+        <tr>
+            <th>Transaction / Order Identifier</th>
+            <td><strong>{{ transaction_id }}</strong></td>
+        </tr>
+        <tr>
+            <th>Incident / Occurrence Date</th>
+            <td>{{ incident_date }}</td>
+        </tr>
+        <tr>
+            <th>Disputed Claim Amount</th>
+            <td><strong style="color: #c53030;">{{ disputed_amount }}</strong></td>
+        </tr>
+    </table>
+
+    <!-- Section 2: Statement of Facts -->
+    <div class="section-title">2. Statement of Material Facts</div>
+    <div class="text-paragraph">
+        Under instructions and authorization from the Complainant named above, this formal notice is served upon you to address material non-performance, unauthorized deprivation of consumer funds, and/or breach of agreement. The facts of the dispute are set forth hereunder:
+    </div>
+    <div class="text-paragraph" style="background-color: #f7fafc; border: 1px solid #edf2f7; padding: 8px 10px; border-radius: 3px;">
+        {{ issue_summary }}
+    </div>
+    <div class="text-paragraph">
+        Despite bona fide representations and adherence to standard user responsibilities by the Complainant, the Respondent failed to provide the contracted standard of service, retained consumer consideration without lawful justification, and/or relied upon oppressive contractual mechanisms that lack enforceable mutuality.
+    </div>
+
+    <!-- Section 3: Statutory Violations -->
+    <div class="section-title">3. Statutory Claims & Violations Asserted</div>
+    <div class="text-paragraph">
+        The actions, defaults, or omissions of the Respondent constitute prima facie violations under statutory consumer protection principles, contract law, and fair trade standards:
+    </div>
+
+    {% if legal_statutes is sequence and legal_statutes is not string %}
+        <ul class="statute-list">
+            {% for statute in legal_statutes %}
+                <li><strong>{{ statute }}</strong></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <div class="statute-box">
+            <strong>Legal Grounds:</strong> {{ legal_statutes }}
+        </div>
+    {% endif %}
+
+    <div class="text-paragraph">
+        Specifically, one-sided exclusion clauses, non-negotiated waivers of rights, unconscionable retention of funds, and arbitrary terms modification constitute unfair trade practices and voidable unconscionable covenants.
+    </div>
+
+    <!-- Section 4: Formal Demands & Legal Repercussions -->
+    <div class="section-title">4. Demands for Immediate Relief</div>
+    <div class="demand-box">
+        <strong>FORMAL RECTIFICATION DEMAND:</strong><br>
+        You are hereby called upon to satisfy and comply with the following demands within <strong>fifteen (15) days</strong> of receipt of this notice:
+        <ol style="margin: 4px 0 0 16px; padding: 0;">
+            <li>Immediately reverse and unconditionally refund the full disputed amount of <strong>{{ disputed_amount }}</strong> back to the Complainant's original payment method;</li>
+            <li>Cease and desist from imposing unilateral penalties, recurring billing, or adverse debt reporting against the Complainant;</li>
+            <li>Furnish written confirmation of full dispute closure and account rectification.</li>
+        </ol>
+    </div>
+
+    <div class="text-paragraph">
+        <strong>NOTICE OF INTENT TO INITIATE ADJUDICATION:</strong> Should you fail or neglect to comply with the above demands within the stipulated period of fifteen (15) days, the Complainant shall, without further reference or reminder, initiate formal legal proceedings before the competent Consumer Disputes Redressal Forum / Small Claims Tribunal, seeking:
+    </div>
+    <ul class="statute-list">
+        <li>Full refund of the principal amount (<strong>{{ disputed_amount }}</strong>) along with interest at 18% per annum from the date of default until actual realization;</li>
+        <li>Substantial damages for mental agony, operational harassment, and loss of valuable time;</li>
+        <li>Full recovery of all incurred litigation costs and statutory penalty charges.</li>
+    </ul>
+
+    <!-- Section 5: Signature & Verification -->
+    <table class="signature-table">
+        <tr>
+            <td style="width: 50%; vertical-align: top;">
+                <div style="font-size: 8.5pt; color: #718096;">
+                    Notice Generated & Compiled by:<br>
+                    <strong>Clausify AI Legal Compliance Engine</strong><br>
+                    Acting for and on behalf of the Complainant
+                </div>
+            </td>
+            <td style="width: 50%; vertical-align: top; text-align: right;">
+                <div style="display: inline-block; text-align: left;">
+                    <div style="font-size: 9pt; color: #4a5568;">Sincerely,</div>
+                    <div class="signature-line"></div>
+                    <div style="font-size: 9.5pt; font-weight: bold; margin-top: 4px;">{{ complainant_name }}</div>
+                    <div style="font-size: 8.5pt; color: #718096;">Aggrieved Complainant</div>
+                    <div style="font-size: 8pt; color: #a0aec0; margin-top: 2px;">Date: {{ notice_date | default("Immediate") }}</div>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+</body>
+</html>
